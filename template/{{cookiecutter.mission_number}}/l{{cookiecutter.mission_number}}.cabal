@@ -1,0 +1,23 @@
+cabal-version: 1.12
+name:          l{{cookiecutter.mission_number}}
+version:       0.0.0
+build-type:    Simple
+-- data-dir:      resources/
+-- data-files:
+
+executable l{{cookiecutter.mission_number}}
+  main-is:            main.hs
+  -- other-modules:      Paths_l{{cookiecutter.mission_number}}
+  hs-source-dirs:     .
+  -- default-extensions:
+
+  ghc-options:
+    -Wall -Wcompat -Widentities -Wincomplete-record-updates
+    -Wincomplete-uni-patterns -Wmissing-export-lists
+    -Wmissing-home-modules -Wmonomorphism-restriction
+    -Wno-missing-export-lists -Wno-orphans -Wno-type-defaults
+    -Wpartial-fields -Wredundant-constraints -Wno-x-partial
+    -Wno-compat-unqualified-imports
+
+  build-depends:      base >=4.7 && <5
+  default-language:   Haskell2010

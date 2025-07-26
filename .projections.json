@@ -1,0 +1,15 @@
+{ "*.hs": { "make": "cabal"
+          , "dispatch": "-dir=%:h cabal build"
+          , "start": "-dir=%:h cabal run"
+          , "console": "-dir=%:h cabal repl"
+          }
+, "*/Main.hs": { "type": "solution" }
+, "*/l*.cabal": { "make": "cabal"
+                , "dispatch": "-dir=%:h cabal build"
+                , "start": "-dir=%:h cabal run"
+                , "console": "-dir=%:h cabal repl"
+                }
+, "*.nix": { "template": [ "{open} ... {close}:", "{", "}" ]
+           , "console": "nix repl --expr \"builtins.getFlake \\\"$PWD\\\"\""
+           }
+}
