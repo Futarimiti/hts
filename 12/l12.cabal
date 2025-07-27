@@ -1,0 +1,22 @@
+cabal-version: 1.12
+name:          l12
+version:       0.0.0
+build-type:    Simple
+
+executable l12
+  main-is:            main.hs
+  hs-source-dirs:     .
+  default-extensions: TypeApplications
+  ghc-options:
+    -Wall -Wcompat -Widentities -Wincomplete-record-updates
+    -Wincomplete-uni-patterns -Wmissing-export-lists
+    -Wmissing-home-modules -Wmonomorphism-restriction
+    -Wno-missing-export-lists -Wno-orphans -Wno-type-defaults
+    -Wpartial-fields -Wredundant-constraints -Wno-x-partial
+    -Wno-compat-unqualified-imports
+
+  build-depends:
+      base   >=4.7 && <5
+    , Hclip
+
+  default-language:   Haskell2010
