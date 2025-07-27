@@ -3,7 +3,6 @@ module Plot (plotInstructions) where
 import Codec.Picture               qualified as Pic
 import Control.Monad.IO.Class
 import Data.Foldable
-import Data.Generics.Labels ()
 import Data.Word
 import Graphics.Rasterific         qualified as Raster
 import Graphics.Rasterific.Texture qualified as Raster

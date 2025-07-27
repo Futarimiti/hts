@@ -36,19 +36,14 @@ executable l04
   build-depends:
       base              >=4.7 && <5
     , case-insensitive
-    , Chart
-    , Chart-cairo
     , data-default
-    , diagrams
     , exceptions
-    , generic-lens
     , JuicyPixels
     , lens
     , linear
     , mtl
     , Rasterific
     , text
-    , transformers
     , xml-conduit
     , xml-lens
 
