@@ -1,5 +1,5 @@
 {
-  description = "My solutions to HackThisSite programming missions in Haskell";
+  description = "My solutions to HackThisSite programming missions, mostly in Haskell";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
@@ -13,13 +13,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         haskellPackages = pkgs.haskell.packages.ghc9101;
-        xml-lens = pkgs.fetchFromGitHub {
-          owner = "bellroy";
-          repo = "xml-lens";
-          rev = "41248a393579d27f3b0432714113f159412f028d";
-          sha256 = "sha256-P7oYIDEgmo/eGoPDfULttXq4+fjlQGkJ8hI1t9hh3Hs=";
-        };
-        findPackages =
+        getPackages =
           with builtins;
           with pkgs.lib;
           let
@@ -28,29 +22,23 @@
           dir:
           readDir dir
           |> filterAttrs (name: state: state == "directory" && stringIsNat name)
-          |> mapAttrs (
-            name: _:
-            haskellPackages.developPackage {
-              root = path.append dir name;
-              source-overrides = { inherit xml-lens; };
-            }
-          );
+          |> mapAttrs (name: _: pkgs.callPackage (path.append dir name) { });
       in
       {
-        packages = findPackages ./.;
+        packages = getPackages ./.;
         devShells = {
           default = haskellPackages.shellFor {
             packages = _: [ ];
             nativeBuildInputs = [
-              pkgs.zlib
-              pkgs.pkg-config
-              pkgs.cookiecutter
-              pkgs.cairo
-              pkgs.expat
-              pkgs.xorg.libXdmcp
               haskellPackages.cabal-install
-              haskellPackages.hpack
               haskellPackages.haskell-language-server
+              haskellPackages.hpack
+              pkgs.cairo
+              pkgs.cookiecutter
+              pkgs.expat
+              pkgs.pkg-config
+              pkgs.xorg.libXdmcp
+              pkgs.zlib
             ];
           };
         };
