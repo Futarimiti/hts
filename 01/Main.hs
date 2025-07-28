@@ -1,10 +1,12 @@
 module Main where
 
+import Codec.Archive.Zip          qualified as Zip
 import Control.Monad.Reader
+import Data.ByteString.Lazy.Char8 qualified as BS8
 import Data.Function
 import Data.List
 import Data.Traversable
-import Paths_l01            (getDataFileName)
+import HTS.Utils                  qualified as HTS
 import System.Environment
 import System.Exit
 
@@ -18,7 +20,13 @@ scramblesTo = (==) `on` sort
 
 main :: IO ()
 main = do
-  wordlist <- fmap lines . readFile =<< getDataFileName "wordlist.txt"
+  zip' <- HTS.fetch "https://www.hackthissite.org/missions/prog/1/wordlist.zip"
+  Right archive <- pure $ Zip.toArchiveOrFail zip'
+  Just entry <- pure $ Zip.findEntryByPath "wordlist.txt" archive
+  let
+    -- uses \r\n as line separator
+    wordlistRaw = BS8.unpack $ Zip.fromEntry entry
+    wordlist = map (dropWhileEnd (== '\r')) $ lines wordlistRaw
   inputs <- getArgs
   case for inputs $ \input -> unscramble input wordlist of
     Just outputs -> putStrLn $ intercalate "," outputs

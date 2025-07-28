@@ -2,67 +2,24 @@ cabal-version: 1.12
 name:          l01
 version:       0.0.0
 build-type:    Simple
-data-dir:      resources/
-data-files:    wordlist.txt
 
 executable l01
   main-is:            main.hs
-  other-modules:      Paths_l01
   hs-source-dirs:     .
-  default-extensions:
-    AllowAmbiguousTypes
-    ApplicativeDo
-    BangPatterns
-    BinaryLiterals
-    BlockArguments
-    ConstraintKinds
-    DataKinds
-    DefaultSignatures
-    DeriveDataTypeable
-    DeriveGeneric
-    DeriveLift
-    DeriveTraversable
-    DerivingStrategies
-    DerivingVia
-    FlexibleContexts
-    FlexibleInstances
-    FunctionalDependencies
-    GeneralisedNewtypeDeriving
-    ImportQualifiedPost
-    ImpredicativeTypes
-    InstanceSigs
-    LambdaCase
-    MultiWayIf
-    OverloadedLabels
-    OverloadedLists
-    OverloadedStrings
-    PartialTypeSignatures
-    PatternSynonyms
-    QuasiQuotes
-    RankNTypes
-    RecordWildCards
-    ScopedTypeVariables
-    StandaloneDeriving
-    StandaloneKindSignatures
-    StrictData
-    TemplateHaskell
-    TypeApplications
-    TypeFamilyDependencies
-    TypeOperators
-    UndecidableInstances
-    UnicodeSyntax
-    ViewPatterns
-
+  default-extensions: ImportQualifiedPost
   ghc-options:
     -Wall -Wcompat -Widentities -Wincomplete-record-updates
     -Wincomplete-uni-patterns -Wmissing-export-lists
     -Wmissing-home-modules -Wmonomorphism-restriction
     -Wno-missing-export-lists -Wno-orphans -Wno-type-defaults
     -Wpartial-fields -Wredundant-constraints -Wno-x-partial
-    -Wno-compat-unqualified-imports
+    -Wno-compat-unqualified-imports -threaded
 
   build-depends:
-      base  >=4.7 && <5
+      base         >=4.7 && <5
+    , bytestring
+    , hts-utils
     , mtl
+    , zip-archive
 
   default-language:   Haskell2010
