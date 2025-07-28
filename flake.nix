@@ -13,7 +13,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         haskellPackages = pkgs.haskell.packages.ghc9101;
-        getPackages =
+        getMissionPackages =
           with builtins;
           with pkgs.lib;
           let
@@ -25,7 +25,7 @@
           |> mapAttrs (name: _: pkgs.callPackage (path.append dir name) { });
       in
       {
-        packages = getPackages ./.;
+        packages = getMissionPackages ./.;
         devShells = {
           default = haskellPackages.shellFor {
             packages = _: [ ];
