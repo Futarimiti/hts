@@ -3,9 +3,9 @@ module Parse (readInstructions) where
 import Control.Applicative
 import Control.Arrow
 import Control.Lens
-import Control.Monad
 import Control.Monad.Catch
 import Control.Monad.IO.Class
+import Data.ByteString.Lazy   qualified as BS
 import Data.CaseInsensitive   (CI)
 import Data.Maybe
 import Data.Text              (Text)
@@ -16,11 +16,10 @@ import Text.XML.Lens          qualified as XML
 import Types
 
 readInstructions
-  :: (MonadIO m, Alternative m, MonadThrow m) => FilePath -> m Instructions
-readInstructions = toDocument >=> parseDrawingInstructions
-
-toDocument :: MonadIO io => FilePath -> io XML.Document
-toDocument = liftIO . XML.readFile XML.def
+  :: (MonadIO m, Alternative m, MonadThrow m, MonadFail m) => BS.ByteString -> m Instructions
+readInstructions content = do
+  Right doc <- pure $ XML.parseLBS XML.def content
+  parseDrawingInstructions doc
 
 parseDrawingInstructions
   :: (Alternative m, MonadThrow m) => XML.Document -> m Instructions

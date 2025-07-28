@@ -2,14 +2,11 @@ cabal-version: 1.12
 name:          l04
 version:       0.0.0
 build-type:    Simple
-data-dir:      resources/
-data-files:    plotMe.xml
 
 executable l04
   main-is:            main.hs
   other-modules:
     Parse
-    Paths_l04
     Plot
     Types
 
@@ -31,13 +28,18 @@ executable l04
     -Wmissing-home-modules -Wmonomorphism-restriction
     -Wno-missing-export-lists -Wno-orphans -Wno-type-defaults
     -Wpartial-fields -Wredundant-constraints -Wno-x-partial
-    -Wno-compat-unqualified-imports
+    -Wno-compat-unqualified-imports -threaded
 
   build-depends:
-      base              >=4.7 && <5
+      base                 >=4.7 && <5
+    , bytestring
+    , bzlib
     , case-insensitive
     , data-default
     , exceptions
+    , http-client
+    , http-client-openssl
+    , http-types
     , JuicyPixels
     , lens
     , linear

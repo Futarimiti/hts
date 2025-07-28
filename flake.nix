@@ -36,6 +36,7 @@
               pkgs.cairo
               pkgs.cookiecutter
               pkgs.expat
+              pkgs.openssl
               pkgs.pkg-config
               pkgs.xorg.libXdmcp
               pkgs.zlib
