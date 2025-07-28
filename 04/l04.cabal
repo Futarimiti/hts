@@ -31,15 +31,13 @@ executable l04
     -Wno-compat-unqualified-imports -threaded
 
   build-depends:
-      base                 >=4.7 && <5
+      base              >=4.7 && <5
     , bytestring
     , bzlib
     , case-insensitive
     , data-default
     , exceptions
-    , http-client
-    , http-client-openssl
-    , http-types
+    , hts-utils
     , JuicyPixels
     , lens
     , linear
