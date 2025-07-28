@@ -41,6 +41,7 @@
               pkgs.xorg.libXdmcp
               pkgs.zlib
             ];
+            DYLD_LIBRARY_PATH = with pkgs; "${lib.getLib openssl}/lib";
           };
         };
       }
