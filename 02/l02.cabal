@@ -1,0 +1,32 @@
+cabal-version: 1.12
+name:          l02
+version:       0.0.0
+build-type:    Simple
+
+executable l02
+  main-is:            main.hs
+  other-modules:      Morse
+  hs-source-dirs:     .
+  default-extensions:
+    BlockArguments
+    ImportQualifiedPost
+    LambdaCase
+
+  ghc-options:
+    -Wall -Wcompat -Widentities -Wincomplete-record-updates
+    -Wincomplete-uni-patterns -Wmissing-export-lists
+    -Wmissing-home-modules -Wmonomorphism-restriction
+    -Wno-missing-export-lists -Wno-orphans -Wno-type-defaults
+    -Wpartial-fields -Wredundant-constraints -Wno-x-partial
+    -Wno-compat-unqualified-imports -threaded
+
+  build-depends:
+      base         >=4.7 && <5
+    , bytestring
+    , containers
+    , Hclip
+    , hts-utils
+    , JuicyPixels
+    , split
+
+  default-language:   Haskell2010

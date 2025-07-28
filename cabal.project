@@ -1,5 +1,6 @@
 packages:
   ./hts-utils
   ./01
+  ./02
   ./04
   ./12
